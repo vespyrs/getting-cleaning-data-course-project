@@ -62,12 +62,12 @@ x_data <- x_data[selectCols]
 fullData <- cbind(s_data, y_data, x_data)
 colnames(fullData) <- c("subject", "activity", selectColName)
 
-fullData$Activity <- factor(fullData$Activity, levels = a_label[,1], labels = a_label[,2])
-fullData$Subject <- as.factor(fullData$Subject)
+fullData$activity <- factor(fullData$activity, levels = a_label[,1], labels = a_label[,2])
+fullData$subject <- as.factor(fullData$subject)
 
 
 # get final dataset
 meltData <- melt(fullData, id = c("subject", "activity"))
-finalData <- dcast(meltData, Subject + Activity ~ variable, mean)
+finalData <- dcast(meltData, subject + activity ~ variable, mean)
 
-write.table(finalData, "./tidy_dataset.txt", row.names = FALSE, quote = FALSE)
+write.table(finalData, "./tidydata.txt", row.names = FALSE, quote = FALSE)
